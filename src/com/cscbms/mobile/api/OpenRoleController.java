@@ -19,8 +19,7 @@ import com.cscbms.vo.RoleVo;
 @Controller
 @RequestMapping(value = "/open")
 public class OpenRoleController extends BaseController {
-	
-	
+
 	@Autowired
 	private RoleDao roleDao;
 	
@@ -36,10 +35,6 @@ public class OpenRoleController extends BaseController {
 		List<Role> roles = roleDao.findByPage(page);
 		return roles.size()>0?renderSuccess(roles) : renderError("error");
 	}
-	
-	
-	
-	
 
 	/*插入数据*/
 	@RequestMapping(value = "/addroleinfo.do")
@@ -59,7 +54,6 @@ public class OpenRoleController extends BaseController {
 		BeanUtils.copyProperties(roleVo, role);//對象拷貝
 		roleDao.updateRole(role);
 		return renderSuccess("success");
-		
 	}
 	
 	/*删除数据*/
@@ -68,7 +62,5 @@ public class OpenRoleController extends BaseController {
 	public JsonResult deleteroleinfo(int id) {
 		roleDao.deleteRole(id);
 		return renderSuccess("成功");
-		
 	}
-
 }

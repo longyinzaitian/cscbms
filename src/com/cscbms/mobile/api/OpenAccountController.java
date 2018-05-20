@@ -19,12 +19,10 @@ import com.cscbms.mobile.common.BaseController;
 import com.cscbms.mobile.common.JsonResult;
 import com.cscbms.vo.AccountVo;
 
-
 @Controller
 @RequestMapping(value="/open")
 public class OpenAccountController extends BaseController {
 
-	
 	@Resource
 	private AccountDao accountDao;
 	
@@ -49,9 +47,6 @@ public class OpenAccountController extends BaseController {
 		BeanUtils.copyProperties(accountVo, account);
 		accountDao.save(account);
 		 return renderSuccess("success");
-		
-		
-		
 	}
 	
 	/*更新*/
@@ -61,10 +56,8 @@ public class OpenAccountController extends BaseController {
 		Account account=new Account();
 		BeanUtils.copyProperties(accountVo, account);
 		accountDao.update(account);
-		 return renderSuccess("success");
-		
+		return renderSuccess("success");
 	}
-	
 
 	 /*开始服务*/
 	@RequestMapping("/updateStart.do")
@@ -75,7 +68,7 @@ public class OpenAccountController extends BaseController {
 		a.setAccountId(accountId);
 		a.setStatus(0);
 		accountDao.updateStatus(a);
-		 return renderSuccess("success");
+		return renderSuccess("success");
 	}
 	
 	/*暂停服务*/
@@ -87,11 +80,9 @@ public class OpenAccountController extends BaseController {
 		a.setAccountId(accountId);
 		a.setStatus(1);
 		accountDao.updateStatus(a);
-		
 		//暂停其下属的业务账号
 		serviceDao.pauseByAccount(accountId);
-		
-		 return renderSuccess("success");
+		return renderSuccess("success");
 	}
 	
 	/*删除*/
@@ -103,12 +94,9 @@ public class OpenAccountController extends BaseController {
 		a.setAccountId(accountId);
 		a.setStatus(2);
 		accountDao.updateStatus(a);
-		
 		//删除其下属的业务账号
 		serviceDao.deleteByAccount(accountId);
-		
-		 return renderSuccess("success");
+		return renderSuccess("success");
 	}
-	
-	
+
 }

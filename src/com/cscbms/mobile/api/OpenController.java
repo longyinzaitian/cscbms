@@ -1,6 +1,5 @@
 package com.cscbms.mobile.api;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 import com.cscbms.dao.AdminDao;
 
@@ -32,8 +30,7 @@ public class OpenController extends BaseController {
 
 	@Autowired
 	private AdminDao adminDao;
-	
-	
+
 	/*修改密码*/
 	@RequestMapping(value = "/modifyPwdjson.do")
 	@ResponseBody
@@ -48,23 +45,14 @@ public class OpenController extends BaseController {
 			return renderError("失败");
 		}
 	}
-	
-	
-
-	
-
-	
 
 	/* 查询数据 */
 	@RequestMapping(value = "/finduserinfo.do")
 	@ResponseBody
 	public JsonResult finduserinfo(HttpSession session, AdminVo adminVo) {
 		List<AdminVo> adminVos = adminDao.findByList(adminVo);
-		
 		return adminVos.size()>0?renderSuccess(adminVos) : renderError("error");
 	}
-	
-	
 
 	/*插入数据*/
 	@RequestMapping(value = "/adduserinfo.do")
@@ -84,16 +72,13 @@ public class OpenController extends BaseController {
 		BeanUtils.copyProperties(adminVo, admin);//對象拷貝
 		adminDao.updateAdmin(admin);
 		return renderSuccess("success");
-		
 	}
-	
-	
+
 	/*删除数据*/
 	@RequestMapping(value = "/deleteuserinfo.do")
 	@ResponseBody
 	public JsonResult deleteuserinfo(int id) {
 		adminDao.deleteAdmin(id);
 		return renderSuccess("成功");
-		
 	}
 }

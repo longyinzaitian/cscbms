@@ -26,7 +26,6 @@ public class OpenServiceController extends BaseController{
 	@Autowired
 	private ServiceDao serviceDao;
 	
-	
       /*	查询*/
 	@RequestMapping(value="/findByService.do")
 	@ResponseBody
@@ -35,8 +34,6 @@ public class OpenServiceController extends BaseController{
 		page.setPageSize(1000);
 		List<Map<String, Object>> services=serviceDao.findByPage(page);
 		return services.size()>0?renderSuccess(services):renderError("error");
-		
-		
 	}
 	
 	/*保存数据*/
@@ -47,11 +44,8 @@ public class OpenServiceController extends BaseController{
 		BeanUtils.copyProperties(serviceVo, service);
 		serviceDao.save(service);
 		return renderSuccess("success");
-		
-		
 	}
-	
-	
+
 	/*更新数据*/
 	@RequestMapping(value="/updateService.do")
 	@ResponseBody
@@ -60,10 +54,7 @@ public class OpenServiceController extends BaseController{
 		BeanUtils.copyProperties(serviceVo, service);
 		serviceDao.update(service);
 		return renderSuccess("success");
-		
-		
 	}
-	
 	
 	/*删除数据*/
 	@RequestMapping(value="/deleteService.do")
@@ -74,9 +65,6 @@ public class OpenServiceController extends BaseController{
 		service.setStatus('2');
 		serviceDao.updateStatus(service);
 		return renderSuccess("success");
-		
-		
 	}
-	
 
 }

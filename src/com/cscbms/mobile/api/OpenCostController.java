@@ -18,17 +18,11 @@ import com.cscbms.mobile.common.BaseController;
 import com.cscbms.mobile.common.JsonResult;
 import com.cscbms.vo.CostVo;
 
-
-
 @Controller
 @RequestMapping(value="/open")
 public class OpenCostController extends BaseController{
-	
-
-	
 	@Autowired 
 	private CostDao costDao;
-	
 	
 	@RequestMapping(value="/findByCost.do")
 	@ResponseBody
@@ -47,8 +41,7 @@ public class OpenCostController extends BaseController{
 		costDao.save(cost);
 		return renderSuccess("success");
 	}
-	
-	
+
 	/*更新数据*/
 	@RequestMapping(value = "/updateCost.do")
 	@ResponseBody
@@ -57,7 +50,6 @@ public class OpenCostController extends BaseController{
 		BeanUtils.copyProperties(costVo, cost);//對象拷貝
 		costDao.update(cost);
 		return renderSuccess("success");
-		
 	}
 	
 	/*删除数据*/
@@ -66,6 +58,5 @@ public class OpenCostController extends BaseController{
 	public JsonResult deleteCost(int id) {
 		costDao.delete(id);
 		return renderSuccess("成功");
-	
-}
+	}
 }
