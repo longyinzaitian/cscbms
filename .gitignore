@@ -5,3 +5,4 @@ out
 .classpath
 .project
 cscbms.iml
+src/jdbc.properties

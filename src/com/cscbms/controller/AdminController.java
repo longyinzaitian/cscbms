@@ -87,12 +87,7 @@ public class AdminController {
 		adminDao.saveAdmin(admin);
 
 		List<Integer> roleIds = admin.getRoleIds();
-		for (Integer roleId : roleIds) {
-			Map<String, Object> adminRoles = new HashMap<String, Object>();
-			adminRoles.put("adminId", admin.getAdminId());
-			adminRoles.put("roleId", roleId);
-			adminDao.saveAdminRoles(adminRoles);
-		}
+		saveRoleIds(admin, roleIds);
 		return "redirect:findAdmin.do";
 	}
 
@@ -115,14 +110,18 @@ public class AdminController {
 		adminDao.deleteAdminRoles(admin.getAdminId());
 
 		List<Integer> roleIds = admin.getRoleIds();
+		saveRoleIds(admin, roleIds);
+
+		return "redirect:findAdmin.do";
+	}
+
+	private void saveRoleIds(Admin admin, List<Integer> roleIds) {
 		for (Integer roleId : roleIds) {
 			Map<String, Object> adminRoles = new HashMap<String, Object>();
 			adminRoles.put("adminId", admin.getAdminId());
 			adminRoles.put("roleId", roleId);
 			adminDao.saveAdminRoles(adminRoles);
 		}
-
-		return "redirect:findAdmin.do";
 	}
 
 	@RequestMapping("/deleteAdmin.do")
